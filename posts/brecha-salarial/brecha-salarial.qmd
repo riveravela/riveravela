@@ -1,0 +1,187 @@
+---
+title: "Brecha salarial por género y sectores económicos"
+author: "Luis Manuel Rivera Vela"
+date: "2023-03-30"
+categories: [brecha salarial, méxico, tamaulipas, zona sur de tamaulipas]
+image: "Brecha salarial por género y sectores económicos, IMSS, febrero 2023.png"
+format:
+     html:
+          fig-width: 16
+          fig-height: 10
+---
+
+# Introducción
+
+La brecha salarial por género es una realidad que afecta a la sociedad actual. Aunque en muchos lugares del mundo se han hecho esfuerzos por reducirla, todavía hay mucho camino por recorrer.
+
+En esta gráfica se busca mostrar la diferencia salarial entre hombres y mujeres en los distintos sectores económicos para México, Tamaulipas y en municipios de la zona sur del estado tamaulipeco, ya sea en su conjunto e individualmente; para ello, se calculó el salario base de cotización diario con información de los trabajadores asegurados al Instituto Mexicano de Seguro Social y su masa salarial para el mes de febrero de 2023.
+
+En tanto, es importante seguir trabajando para cerrar esta brecha y lograr una sociedad más justa e igualitaria.
+
+# Preparación y limpieza
+
+Utilizaremos los paquetes `tidyverse` y `ggthemes`.
+
+```{r Paquetes y librerías, warning = FALSE, message = FALSE}
+#    Paquetes y librerías.
+pacman::p_load(tidyverse, ggthemes)
+#    Remover notación científica.
+options(scipen = 999)
+#    Limpiar ambiente.
+rm(list = ls())
+```
+
+# Carga de datos
+
+Para la realización de esta práctica en donde realizaremos un gráfico de puntos, se utilizará información de los puestos asegurados al [Instituto Mexicano del Seguro Social](http://datos.imss.gob.mx/tags/asegurados) para el mes de febrero.
+
+```{r Cargar, warning = FALSE, message = FALSE}
+url <- "http://datos.imss.gob.mx/sites/default/files/asg-2023-02-28.csv"
+
+imss <- as.data.frame(read_delim(url))
+```
+
+# Extracción y edición
+
+Se categorizará la variable `cve_entidad` para mostrar los nombres de cada Entidad Federativa, así como las variables `sexo` y el `sector_economico_1` con las respectivas etiquetas mostradas en el diccionario de datos que proporciona el IMSS. Asimismo se crearon 6 diferentes dataframes de cada delimitación geográfica que se pretende mostrar, en este caso, se mostrará información a nivel nacional, Tamaulipas y de los municipios de la zona sur de Tamaulipas en su conjunto e individualmente.
+
+Por otra parte, para calcular el salario base de cotización diario, se dividió la totalidad de la masa salarial de los puestos asegurados asociados a un salario del IMSS entre la totalidad de los puestos afiliados asociados a un salario. Asimismo, se realizará una variable categórica como referencia geográfica.
+
+```{r Edición y extracción, warning = FALSE, message = FALSE}
+imss$cve_entidad <- factor(imss$cve_entidad,
+                          levels = c(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16,
+                                     17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32),
+                          labels = c("Aguascalientes", "Baja California", "Baja California Sur",
+                                     "Campeche", "Coahuila", "Colima", "Chiapas", "Chihuahua", "Ciudad de México",
+                                     "Durango", "Guanajuato", "Guerrero", "Hidalgo", "Jalisco", "Estado de México",
+                                     "Michoacán", "Morelos", "Nayarit", "Nuevo León", "Oaxaca", "Puebla", "Querétaro",
+                                     "Quintana Roo", "San Luis Potosí", "Sinaloa", "Sonora", "Tabasco",
+                                     "Tamaulipas", "Tlaxcala", "Veracruz", "Yucatán", "Zacatecas"))
+
+imss$sexo <- factor(imss$sexo,
+                          levels = c(1, 2),
+                          labels = c("Hombre", "Mujer"))
+
+imss$sector_economico_1 <- factor(imss$sector_economico_1,
+                          levels = c(0, 1, 3, 4, 5, 6, 7, 8, 9),
+                          labels = c("Agricultura, ganadería, silvicultura, pesca y caza",
+                                     "Industria extractiva",
+                                     "Industria de la trasformación",
+                                     "Industria de la construcción",
+                                     "Industria eléctrica, y captación y suministro de agua potable",
+                                     "Comercio",
+                                     "Transportes y comunicaciones",
+                                     "Servicios para empresas, personas y el hogar",
+                                     "Servicios sociales y comunales"))
+
+nacional <- imss %>%
+     group_by(sexo, sector_economico_1) %>% 
+     summarise(puestos = sum(ta_sal),
+               masa_sal = sum(masa_sal_ta)) %>% 
+     mutate(sbcd = masa_sal/puestos) %>%
+     mutate(geografía = 1) %>% 
+     na.omit() %>% 
+     as.data.frame()
+
+tamaulipas <- imss %>%
+     filter(cve_entidad == "Tamaulipas") %>% 
+     group_by(sexo, sector_economico_1) %>% 
+     summarise(puestos = sum(ta_sal),
+               masa_sal = sum(masa_sal_ta)) %>% 
+     mutate(sbcd = masa_sal/puestos) %>%
+     mutate(geografía = 2) %>% 
+     na.omit() %>% 
+     as.data.frame()
+
+zona_sur_tam <- imss %>%
+     filter(cve_municipio == "E84" | cve_municipio == "E87" | cve_municipio == "F03") %>% 
+     group_by(sexo, sector_economico_1) %>% 
+     summarise(puestos = sum(ta_sal),
+               masa_sal = sum(masa_sal_ta)) %>% 
+     mutate(sbcd = masa_sal/puestos) %>%
+     mutate(geografía = 3) %>% 
+     na.omit() %>% 
+     as.data.frame()
+
+altamira <- imss %>%
+     filter(cve_municipio == "E84") %>% 
+     group_by(sexo, sector_economico_1) %>% 
+     summarise(puestos = sum(ta_sal),
+               masa_sal = sum(masa_sal_ta)) %>% 
+     mutate(sbcd = masa_sal/puestos) %>%
+     mutate(geografía = 4) %>% 
+     na.omit() %>% 
+     as.data.frame()
+
+cdmadero <- imss %>%
+     filter(cve_municipio == "E87") %>% 
+     group_by(sexo, sector_economico_1) %>% 
+     summarise(puestos = sum(ta_sal),
+               masa_sal = sum(masa_sal_ta)) %>% 
+     mutate(sbcd = masa_sal/puestos) %>%
+     mutate(geografía = 5) %>% 
+     na.omit() %>% 
+     as.data.frame()
+
+tampico <- imss %>%
+     filter(cve_municipio == "F03") %>% 
+     group_by(sexo, sector_economico_1) %>% 
+     summarise(puestos = sum(ta_sal),
+               masa_sal = sum(masa_sal_ta)) %>% 
+     mutate(sbcd = masa_sal/puestos) %>%
+     mutate(geografía = 6) %>% 
+     na.omit() %>% 
+     as.data.frame()
+
+datos <- rbind(nacional, tamaulipas, zona_sur_tam, altamira, cdmadero, tampico)
+
+datos$geografía <- factor(datos$geografía,
+                          levels = c(1, 2, 3, 4, 5, 6),
+                          labels = c("Nacional",
+                                     "Tamaulipas",
+                                     "Zona sur de Tamaulipas",
+                                     "Altamira",
+                                     "Ciudad Madero",
+                                     "Tampico"))
+```
+
+# Gráfico
+
+Se realizará una gráfica de punto para mostrar la diferencia entre los salarios de ambos géneros y se utilizará la función `facet_wrap` para seccionarlo por la referencia geográfica.
+
+```{r Gráfico, warning = FALSE, message = FALSE}
+ggplot(datos, aes(x = sbcd, y = reorder(sector_economico_1, desc(sector_economico_1)))) +
+     geom_line(alpha = 0.75, linewidth = 1, color = "grey25") +
+     geom_point(aes(color = sexo), size = 4.5) +
+     scale_color_manual(values = c("#708090", "#FFB90F"),
+                        name = NULL) +
+     scale_x_continuous(labels = function(sbcd) paste0("$", sbcd)) +
+     labs(title = "Brecha salarial por género y sectores económicos",
+          subtitle = "Diferencia en el salario base de cotización diario asociado a trabajadores asegurados en el IMSS. Febrero 2023.",
+          caption = "Fuente: Elaboración propia con información del Instituto Mexicano del Seguro Social.",
+          x = "Salario Base de Cotización Diario (SBCD)",
+          y = NULL) +
+     theme_solarized_2(base_size = 20) +
+     theme(plot.title = element_text(face = "bold", size = 25),
+           plot.subtitle = element_text(size = 20),
+           plot.caption = element_text(size = 12),
+           plot.margin = margin(t = 1, r = 1, b = 1, l = 1, unit = "cm"),
+           plot.title.position = "plot",
+           plot.caption.position = "plot",
+           legend.position = "top",
+           legend.direction = "horizontal",
+           axis.text = element_text(size = 10),
+           axis.text.x = element_text(size = 12),
+           axis.text.y = element_text(size = 12),
+           axis.title = element_text(size = 15)) +
+     facet_wrap(~geografía, ncol = 3, scales = "free_x") +
+     annotate("text", x = 650, y = 5, label = "@riveravela", size = 15, alpha = 0.1, colour = "grey", angle = 40)
+```
+
+```{r Guardar gráfico, warning = FALSE, message = FALSE, include = FALSE}
+ggsave("Brecha salarial por género y sectores económicos, IMSS, febrero 2023.png",
+       height = 10,
+       width = 16,
+       dpi = 320)
+```
+
