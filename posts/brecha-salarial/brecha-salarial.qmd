@@ -1,8 +1,9 @@
 ---
 title: "Brecha salarial por género y sectores económicos"
+subtitle: "La brecha salarial por género es una realidad que afecta a la sociedad actual. Aunque en muchos lugares del mundo se han hecho esfuerzos por reducirla, todavía hay mucho camino por recorrer."
 author: "Luis Manuel Rivera Vela"
 date: "2023-03-30"
-categories: [Brecha salarial, México, Tamaulipas, IMSS, Code, R]
+categories: [Brecha salarial, México, Tamaulipas, IMSS, Code, R, DataViz]
 image: "Brecha salarial por género y sectores económicos, IMSS, febrero 2023.png"
 format:
      html:
@@ -10,15 +11,11 @@ format:
           fig-height: 10
 ---
 
-# Introducción
-
-La brecha salarial por género es una realidad que afecta a la sociedad actual. Aunque en muchos lugares del mundo se han hecho esfuerzos por reducirla, todavía hay mucho camino por recorrer.
-
-En esta gráfica se busca mostrar la diferencia salarial entre hombres y mujeres en los distintos sectores económicos para México, Tamaulipas y en municipios de la zona sur del estado tamaulipeco, ya sea en su conjunto e individualmente; para ello, se calculó el salario base de cotización diario con información de los trabajadores asegurados al Instituto Mexicano de Seguro Social y su masa salarial para el mes de febrero de 2023.
+En la realización de esta visualización de datos, se busca mostrar la diferencia salarial entre hombres y mujeres en los distintos sectores económicos para México, Tamaulipas y en municipios de la zona sur del estado tamaulipeco, ya sea en su conjunto e individualmente; para ello, se calculó el salario base de cotización diario con información de los trabajadores asegurados al Instituto Mexicano de Seguro Social y su masa salarial para el mes de febrero de 2023.
 
 En tanto, es importante seguir trabajando para cerrar esta brecha y lograr una sociedad más justa e igualitaria.
 
-# Preparación y limpieza
+## Preparación y limpieza
 
 Utilizaremos los paquetes `tidyverse` y `ggthemes`.
 
@@ -31,7 +28,7 @@ options(scipen = 999)
 rm(list = ls())
 ```
 
-# Carga de datos
+## Carga de datos
 
 Para la realización de esta práctica en donde realizaremos un gráfico de puntos, se utilizará información de los puestos asegurados al [Instituto Mexicano del Seguro Social](http://datos.imss.gob.mx/tags/asegurados) para el mes de febrero.
 
@@ -41,7 +38,7 @@ url <- "http://datos.imss.gob.mx/sites/default/files/asg-2023-02-28.csv"
 imss <- as.data.frame(read_delim(url))
 ```
 
-# Extracción y edición
+## Extracción y edición
 
 Se categorizará la variable `cve_entidad` para mostrar los nombres de cada Entidad Federativa, así como las variables `sexo` y el `sector_economico_1` con las respectivas etiquetas mostradas en el diccionario de datos que proporciona el IMSS. Asimismo se crearon 6 diferentes dataframes de cada delimitación geográfica que se pretende mostrar, en este caso, se mostrará información a nivel nacional, Tamaulipas y de los municipios de la zona sur de Tamaulipas en su conjunto e individualmente.
 
@@ -145,7 +142,7 @@ datos$geografía <- factor(datos$geografía,
                                      "Tampico"))
 ```
 
-# Gráfico
+## Gráfico
 
 Se realizará una gráfica de punto para mostrar la diferencia entre los salarios de ambos géneros y se utilizará la función `facet_wrap` para seccionarlo por la referencia geográfica.
 

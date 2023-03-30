@@ -70,9 +70,9 @@ ul.task-list li input[type="checkbox"] {
     }
 
     const options = {
-      valueNames: ['listing-date','listing-title','listing-author','listing-image','listing-description','listing-categories',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-file-modified-sort'] }],
+      valueNames: ['listing-date','listing-title','listing-author','listing-subtitle','listing-image','listing-description','listing-categories',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-file-modified-sort'] }],
       
-      searchColumns: ["listing-date","listing-title","listing-author","listing-image","listing-description","listing-categories"],
+      searchColumns: ["listing-date","listing-title","listing-author","listing-subtitle","listing-image","listing-description","listing-categories"],
     };
 
     window['quarto-listings'] = window['quarto-listings'] || {};
@@ -153,7 +153,7 @@ ul.task-list li input[type="checkbox"] {
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         
-    <h5 class="quarto-listing-category-title">Categories</h5><div class="quarto-listing-category category-default"><div class="category" data-category="">All <span class="quarto-category-count">(2)</span></div><div class="category" data-category="Blog">Blog <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Brecha salarial">Brecha salarial <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Code">Code <span class="quarto-category-count">(1)</span></div><div class="category" data-category="IMSS">IMSS <span class="quarto-category-count">(1)</span></div><div class="category" data-category="México">México <span class="quarto-category-count">(1)</span></div><div class="category" data-category="R">R <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Tamaulipas">Tamaulipas <span class="quarto-category-count">(1)</span></div></div></div>
+    <h5 class="quarto-listing-category-title">Categories</h5><div class="quarto-listing-category category-default"><div class="category" data-category="">All <span class="quarto-category-count">(2)</span></div><div class="category" data-category="Blog">Blog <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Brecha salarial">Brecha salarial <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Code">Code <span class="quarto-category-count">(1)</span></div><div class="category" data-category="DataViz">DataViz <span class="quarto-category-count">(1)</span></div><div class="category" data-category="IMSS">IMSS <span class="quarto-category-count">(1)</span></div><div class="category" data-category="México">México <span class="quarto-category-count">(1)</span></div><div class="category" data-category="R">R <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Tamaulipas">Tamaulipas <span class="quarto-category-count">(1)</span></div></div></div>
 <!-- main -->
 <main class="content quarto-banner-title-block column-page-left" id="quarto-document-content">
 
@@ -166,7 +166,7 @@ ul.task-list li input[type="checkbox"] {
 
 <div class="quarto-listing quarto-listing-container-default" id="listing-listing">
 <div class="list quarto-listing-default">
-<div class="quarto-post image-right" data-index="0" data-categories="Brecha salarial,México,Tamaulipas,IMSS,Code,R" data-listing-date-sort="1680156000000" data-listing-file-modified-sort="1680194340983" data-listing-reading-time-sort="11.62">
+<div class="quarto-post image-right" data-index="0" data-categories="Brecha salarial,México,Tamaulipas,IMSS,Code,R,DataViz" data-listing-date-sort="1680156000000" data-listing-file-modified-sort="1680209268792" data-listing-reading-time-sort="11.475">
 <div class="thumbnail">
 <p><a href="./posts/brecha-salarial/brecha-salarial.html"> <img src="./posts/brecha-salarial/Brecha salarial por género y sectores económicos, IMSS, febrero 2023.png" class="thumnail-image"> </a></p>
 </div>
@@ -176,7 +176,7 @@ ul.task-list li input[type="checkbox"] {
 Brecha salarial por género y sectores económicos
 </h3>
 <div class="listing-subtitle">
-
+La brecha salarial por género es una realidad que afecta a la sociedad actual. Aunque en muchos lugares del mundo se han hecho esfuerzos por reducirla, todavía hay mucho camino por recorrer.
 </div>
 </a>
 <div class="listing-categories">
@@ -198,10 +198,13 @@ Code
 <div class="listing-category" onclick="window.quartoListingCategory('R'); return false;">
 R
 </div>
+<div class="listing-category" onclick="window.quartoListingCategory('DataViz'); return false;">
+DataViz
+</div>
 </div>
 <a href="./posts/brecha-salarial/brecha-salarial.html">
 <div class="listing-description">
-La brecha…
+En la realización de esta visualización de datos, se busca mostrar la diferencia salarial entre hombres y mujeres en los distintos sectores económicos para México…
 </div>
 </a>
 </div>

@@ -169,6 +169,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <div class="quarto-title-banner page-columns page-full">
     <div class="quarto-title column-body">
       <h1 class="title">Brecha salarial por género y sectores económicos</h1>
+            <p class="subtitle lead">La brecha salarial por género es una realidad que afecta a la sociedad actual. Aunque en muchos lugares del mundo se han hecho esfuerzos por reducirla, todavía hay mucho camino por recorrer.</p>
                                 <div class="quarto-categories">
                 <div class="quarto-category">Brecha salarial</div>
                 <div class="quarto-category">México</div>
@@ -176,6 +177,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
                 <div class="quarto-category">IMSS</div>
                 <div class="quarto-category">Code</div>
                 <div class="quarto-category">R</div>
+                <div class="quarto-category">DataViz</div>
               </div>
                   </div>
   </div>
@@ -209,8 +211,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#introducción" id="toc-introducción" class="nav-link active" data-scroll-target="#introducción">Introducción</a></li>
-  <li><a href="#preparación-y-limpieza" id="toc-preparación-y-limpieza" class="nav-link" data-scroll-target="#preparación-y-limpieza">Preparación y limpieza</a></li>
+  <li><a href="#preparación-y-limpieza" id="toc-preparación-y-limpieza" class="nav-link active" data-scroll-target="#preparación-y-limpieza">Preparación y limpieza</a></li>
   <li><a href="#carga-de-datos" id="toc-carga-de-datos" class="nav-link" data-scroll-target="#carga-de-datos">Carga de datos</a></li>
   <li><a href="#extracción-y-edición" id="toc-extracción-y-edición" class="nav-link" data-scroll-target="#extracción-y-edición">Extracción y edición</a></li>
   <li><a href="#gráfico" id="toc-gráfico" class="nav-link" data-scroll-target="#gráfico">Gráfico</a></li>
@@ -223,14 +224,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 
 
-<section id="introducción" class="level1">
-<h1>Introducción</h1>
-<p>La brecha salarial por género es una realidad que afecta a la sociedad actual. Aunque en muchos lugares del mundo se han hecho esfuerzos por reducirla, todavía hay mucho camino por recorrer.</p>
-<p>En esta gráfica se busca mostrar la diferencia salarial entre hombres y mujeres en los distintos sectores económicos para México, Tamaulipas y en municipios de la zona sur del estado tamaulipeco, ya sea en su conjunto e individualmente; para ello, se calculó el salario base de cotización diario con información de los trabajadores asegurados al Instituto Mexicano de Seguro Social y su masa salarial para el mes de febrero de 2023.</p>
+<p>En la realización de esta visualización de datos, se busca mostrar la diferencia salarial entre hombres y mujeres en los distintos sectores económicos para México, Tamaulipas y en municipios de la zona sur del estado tamaulipeco, ya sea en su conjunto e individualmente; para ello, se calculó el salario base de cotización diario con información de los trabajadores asegurados al Instituto Mexicano de Seguro Social y su masa salarial para el mes de febrero de 2023.</p>
 <p>En tanto, es importante seguir trabajando para cerrar esta brecha y lograr una sociedad más justa e igualitaria.</p>
-</section>
-<section id="preparación-y-limpieza" class="level1">
-<h1>Preparación y limpieza</h1>
+<section id="preparación-y-limpieza" class="level2">
+<h2 class="anchored" data-anchor-id="preparación-y-limpieza">Preparación y limpieza</h2>
 <p>Utilizaremos los paquetes <code>tidyverse</code> y <code>ggthemes</code>.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">#    Paquetes y librerías.</span></span>
@@ -241,8 +238,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span>(<span class="at">list =</span> <span class="fu">ls</span>())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="carga-de-datos" class="level1">
-<h1>Carga de datos</h1>
+<section id="carga-de-datos" class="level2">
+<h2 class="anchored" data-anchor-id="carga-de-datos">Carga de datos</h2>
 <p>Para la realización de esta práctica en donde realizaremos un gráfico de puntos, se utilizará información de los puestos asegurados al <a href="http://datos.imss.gob.mx/tags/asegurados">Instituto Mexicano del Seguro Social</a> para el mes de febrero.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>url <span class="ot">&lt;-</span> <span class="st">"http://datos.imss.gob.mx/sites/default/files/asg-2023-02-28.csv"</span></span>
@@ -250,8 +247,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>imss <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(<span class="fu">read_delim</span>(url))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="extracción-y-edición" class="level1">
-<h1>Extracción y edición</h1>
+<section id="extracción-y-edición" class="level2">
+<h2 class="anchored" data-anchor-id="extracción-y-edición">Extracción y edición</h2>
 <p>Se categorizará la variable <code>cve_entidad</code> para mostrar los nombres de cada Entidad Federativa, así como las variables <code>sexo</code> y el <code>sector_economico_1</code> con las respectivas etiquetas mostradas en el diccionario de datos que proporciona el IMSS. Asimismo se crearon 6 diferentes dataframes de cada delimitación geográfica que se pretende mostrar, en este caso, se mostrará información a nivel nacional, Tamaulipas y de los municipios de la zona sur de Tamaulipas en su conjunto e individualmente.</p>
 <p>Por otra parte, para calcular el salario base de cotización diario, se dividió la totalidad de la masa salarial de los puestos asegurados asociados a un salario del IMSS entre la totalidad de los puestos afiliados asociados a un salario. Asimismo, se realizará una variable categórica como referencia geográfica.</p>
 <div class="cell">
@@ -352,8 +349,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb3-95"><a href="#cb3-95" aria-hidden="true" tabindex="-1"></a>                                     <span class="st">"Tampico"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="gráfico" class="level1">
-<h1>Gráfico</h1>
+<section id="gráfico" class="level2">
+<h2 class="anchored" data-anchor-id="gráfico">Gráfico</h2>
 <p>Se realizará una gráfica de punto para mostrar la diferencia entre los salarios de ambos géneros y se utilizará la función <code>facet_wrap</code> para seccionarlo por la referencia geográfica.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(datos, <span class="fu">aes</span>(<span class="at">x =</span> sbcd, <span class="at">y =</span> <span class="fu">reorder</span>(sector_economico_1, <span class="fu">desc</span>(sector_economico_1)))) <span class="sc">+</span></span>
