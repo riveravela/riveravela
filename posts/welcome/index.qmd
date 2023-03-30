@@ -1,11 +1,11 @@
 ---
 title: "Welcome To My Blog"
-author: "Tristan O'Malley"
-date: "2023-03-26"
-categories: [news]
+author: "Luis Manuel Rivera Vela"
+date: "2023-03-30"
+categories: [blog]
 ---
 
-This is the first post in a Quarto blog. Welcome!
+Este es mi primera entrada al blog.
 
 ![](thumbnail.jpg)
 
