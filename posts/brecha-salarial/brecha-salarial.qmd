@@ -2,7 +2,7 @@
 title: "Brecha salarial por género y sectores económicos"
 author: "Luis Manuel Rivera Vela"
 date: "2023-03-30"
-categories: [brecha salarial, méxico, tamaulipas, zona sur de tamaulipas]
+categories: [Brecha salarial, México, Tamaulipas, Zona sur de Tamaulipas, code]
 image: "Brecha salarial por género y sectores económicos, IMSS, febrero 2023.png"
 format:
      html:
@@ -184,4 +184,3 @@ ggsave("Brecha salarial por género y sectores económicos, IMSS, febrero 2023.p
        width = 16,
        dpi = 320)
 ```
-
