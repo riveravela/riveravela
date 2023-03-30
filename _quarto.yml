@@ -12,7 +12,7 @@ website:
         href: https://twitter.com/riveravela
 format:
   html:
-    theme: darkly
+    theme: slate
     css: styles.css
 
 editor: visual
