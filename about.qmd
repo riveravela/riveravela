@@ -1,19 +1,26 @@
 ---
-title: "About"
-image: profile.jpg
+title: "Acerca de mi"
+image: riveravela.jpg
 about:
-  template: jolla
+  template: trestles
   links:
     - icon: twitter
       text: Twitter
-      href: https://twitter.com
+      href: https://twitter.com/riveravela
     - icon: linkedin
       text: LinkedIn
-      href: https://linkedin.com
+      href: https://linkedin.com/riveravela
     - icon: github
       text: Github
-      href: https://github.com
-
+      href: https://github.com/riveravela
 ---
 
-About this blog
+Mi nombre es Rivera Vela.
+
+Soy Economista por la Universidad Autónoma de Tamaulipas y recientemente me adentré al uso del lenguaje R, por lo que, para poder expresar los trabajos que realizo a través de este lenguaje, decidí realizar este blog.
+
+Desde septiembre de 2022 comencé en este camino de la visualización de datos en R y pretendo convertir este software como mi recurso predeterminado para llevar a cabo mis actividades laborales y académicas.
+
+Actualmente me desempeño como colaborador independiente del Cuerpo Académico Consolidado de Bienestar Económico y Social de la Universidad Autónoma de Tamaulipas Campus Sur, así como columnista semanal en El Sol de Tampico.
+
+Mis áreas de interés son la economía laboral, desigualdad y pobreza.
