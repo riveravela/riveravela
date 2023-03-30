@@ -3,6 +3,7 @@ title: "Acerca de mi"
 image: riveravela.jpg
 about:
   template: trestles
+  image-shape: rounded
   links:
     - icon: twitter
       text: Twitter

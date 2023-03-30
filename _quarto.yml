@@ -19,7 +19,7 @@ website:
         href: https://twitter.com/riveravela
 format:
   html:
-    theme: slate
+    theme: flatly
     css: styles.css
     link-external-icon: true
     toc: true
