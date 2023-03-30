@@ -13,8 +13,8 @@ website:
 format:
   html:
     theme:
-          dark: cosmo
-          light: darkly
+     dark: cosmo
+     light: darkly
     css: styles.css
 
 editor: visual
