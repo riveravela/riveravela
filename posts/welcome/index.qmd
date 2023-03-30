@@ -1,12 +1,8 @@
 ---
-title: "Welcome To My Blog"
+title: "Primer post"
 author: "Luis Manuel Rivera Vela"
-date: "2023-03-30"
+date: "2023-03-29"
 categories: [blog]
 ---
 
 Este es mi primera entrada al blog.
-
-![](thumbnail.jpg)
-
-Since this post doesn't specify an explicit `image`, the first image in the post will be used in the listing page of posts.
