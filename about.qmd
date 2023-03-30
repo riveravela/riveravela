@@ -19,6 +19,6 @@ Economista por la Universidad Autónoma de Tamaulipas y recientemente me adentr�
 
 Desde septiembre de 2022 comencé en el camino de la visualización de datos en R y pretendo convertir este software como mi recurso predeterminado para llevar a cabo mis actividades laborales y académicas.
 
-Actualmente me desempeño como colaborador del Cuerpo Académico Consolidado de Bienestar Económico y Social de la Universidad Autónoma de Tamaulipas Campus Sur, así como columnista semanal en El Sol de Tampico.
+Actualmente me desempeño como colaborador del Cuerpo Académico Consolidado de Bienestar Económico y Social de la Universidad Autónoma de Tamaulipas Campus Sur, así como columnista semanal en [El Sol de Tampico](https://www.elsoldetampico.com.mx/analisis/autor/luis-manuel-r.-vela).
 
 Mis áreas de interés son la economía laboral, desigualdad y pobreza.
