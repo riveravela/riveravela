@@ -2,6 +2,7 @@ project:
   type: website
 
 website:
+  google-analytics: "G-YWJHMVKG1Q"
   page-footer:
     left: Blog realizado con [Quarto](https://quarto.org/), por LMRV.
     right:
