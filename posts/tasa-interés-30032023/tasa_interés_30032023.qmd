@@ -1,9 +1,9 @@
 ---
-title: "Tasa de interés objetivo"
+title: "Sin sobresaltos en Banxico"
 subtitle: "Ninguna sorpresa por parte de la Junta de Gobierno del Banco de México en su última decisión de política monetaria."
 author: "Luis Manuel Rivera Vela"
 date: "2023-03-31"
-categories: [Política monetaria, R, DataViz, Code, México]
+categories: [Política monetaria, Banxico, R, DataViz, Code, México]
 image: "ti_0823.png"
 format:
      html:
@@ -23,7 +23,7 @@ Para México, recalcan que la inflación general ha menguado más de lo previsto
 
 Asimismo, esperan que la inflación converga a la meta objetivo a finales del 2024, mientras que sus previsiones están sujetas a riesgos al alza principalmente por la persistencia de la inflación subyacente en niveles elevados, depreciación cambiaria ante eventos volatiles en el mercado internacional, presiones de costos y presiones en los niveles de precios de los commodities energéticos y/o agropecuarios. En tanto, las previsiones a la baja están incididas por una desaceleración económica a nivel global, menor traspaso de presiones en los costos, un escenario cada vez más favorable en las situaciones geopolíticas a nivel internacional o un mejor funcionamiento en las cadenas de suministro, así como un efecto mayor en las medidas del Gobierno a través del [Paquete contra la inflación y carestía (PACIC)](https://www.gob.mx/cms/uploads/attachment/file/723331/CPM_SHCP_Pacic__04may22.pdf) para mitigar los altos niveles de precios en su canasta de productos.
 
-Con todo ello, la Junta de Gobierno del Banco de México decidió por unanimidad el incremento de 25 puntos base para llegar a un nivel de 11.25 por ciento. Siendo así, en la @fig-chart se puede visualizar la evolución de la tasa de interés objetivo por parte de Banxico desde el 2008 a la fecha de esta última decisión.
+Con todo ello, la Junta de Gobierno del Banco de México decidió por unanimidad el incremento de 25 puntos base para llegar a un nivel de 11.25 por ciento. Siendo así, la tasa de interés por parte de Banco de México ha llegado a niveles máximos una vez más (tal como se observa en @fig-chart) desde que se implementó en 2008.
 
 ```{r Librería y token, warning = FALSE, message = FALSE, include = FALSE}
 pacman::p_load(ggplot2, siebanxicor, tidyverse, plotly)
@@ -32,13 +32,13 @@ setToken("2de1d66ba59782aba1443de8e70952e1dc18a2c5ad3ec9bb6a202d13cf24183a")
 
 ## Evolución de la tasa de interés desde 2008.
 
-Para la creación de esta gráfica, se descargó el paquete `siebanxicor` del @siebanxicor para obtener la información directamente del API del Sistema de Información Económica (SIE) de esta institución, con ello se facilita el acceso y la consulta de los indicadores que dispone ese repositorio. En tanto, se necesitará generar un token dentro del portal para configurarlo en R, así como la consulta del catálogo de series para obtener el identificador (IdSerie) que se requiera. En este caso específico utilizamos el IdSerie **SF61745**, que pertenece a la **Tasa de objetivo**.
+Para la creación de esta gráfica interactiva, se descargó el paquete `siebanxicor` del @siebanxicor para obtener la información directamente del API del Sistema de Información Económica (SIE) de esta institución, con ello se facilita el acceso y la consulta de los indicadores que dispone ese repositorio. En tanto, se necesitará generar un token dentro del portal para configurarlo en R, así como la consulta del catálogo de series para obtener el identificador (IdSerie) que se desea consultar. En este caso específico se utilizó el IdSerie **SF61745**, que pertenece a la **Tasa de objetivo**.
 
-Para mayor información, se puede acceder a la plataforma del SIE API del Banco de México [aquí](https://www.banxico.org.mx/SieAPIRest/service/v1/).
+Para mayor información, se puede acceder [aquí](https://www.banxico.org.mx/SieAPIRest/service/v1/) a la plataforma del SIE API del Banco de México.
 
 ```{r Gráfico, warning = FALSE, message = FALSE, include = TRUE}
 #| label: fig-chart
-#| fig-cap: "Tasa de interés de 2008 a la última decisión de política monetaria."
+#| fig-cap: "Evolución de la tasa de interés en México, de 2008 a la última decisión de política monetaria."
 #| fig-cap-location: bottom
 # ID del catálogo de series de Banco de México.
 idSerie <- c("SF61745")
