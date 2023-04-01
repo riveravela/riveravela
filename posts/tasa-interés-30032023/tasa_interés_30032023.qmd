@@ -3,7 +3,7 @@ title: "Tasa de interés objetivo"
 subtitle: "Ninguna sorpresa por parte de la Junta de Gobierno del Banco de México en su última decisión de política monetaria."
 author: "Luis Manuel Rivera Vela"
 date: "2023-03-31"
-categories: [Política monetaria, R, DataViz]
+categories: [Política monetaria, R, DataViz, Code, México]
 format:
      html:
           fig-width: 16
