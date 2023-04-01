@@ -4,6 +4,7 @@ subtitle: "Ninguna sorpresa por parte de la Junta de Gobierno del Banco de Méxi
 author: "Luis Manuel Rivera Vela"
 date: "2023-03-31"
 categories: [Política monetaria, R, DataViz, Code, México]
+image: "ti_0823.png"
 format:
      html:
           fig-width: 16
@@ -14,7 +15,7 @@ bibliography: "citation.bib"
 csl: "apa.csl"
 ---
 
-El día de ayer, 30 de marzo de 2023, la Junta de Gobierno del Banco de México decidió incrementar la tasa de interés objetivo en 25 puntos base para yacerla en 11.25 por ciento, siendo ésta, la tasa de interés más alta en la historia desde que Banxico comenzó a utilizarla como política monetaria en 2008. Esta decisión fue en línea con las expectativas del mercado dado el paralelismo —para algunos malo, para otros bueno— en relación con las decisiones que toma su homóloga estadounidense, la Reserva Federal de Estados Unidos.
+El día de ayer, 30 de marzo de 2023, la Junta de Gobierno del Banco de México decidió incrementar la tasa de interés objetivo en 25 puntos base para yacerla en 11.25 por ciento, siendo ésta, la tasa de interés más alta en la historia desde que Banxico comenzó a utilizarla como política monetaria en 2008. Esta decisión fue en línea con las expectativas del mercado dado el paralelismo ---para algunos malo, para otros bueno--- en relación con las decisiones que toma su homóloga estadounidense, la Reserva Federal de Estados Unidos.
 
 En su [comunidado de prensa](https://www.banxico.org.mx/publicaciones-y-prensa/anuncios-de-las-decisiones-de-politica-monetaria/%7BB5CDF10E-D32B-9E92-3E8E-13BB22940D60%7D.pdf), mencionan el hecho de que la inflación general continuó disminuyendo en distintas economías, no obstante, los niveles de precios persisten elevados. A su vez, la inflación subyacente ha mostrado una permanencia aún alta. Respecto a las políticas monetarias en otras naciones, sus bancas centrales han continuado con los incrementos en la tasa de interés.
 
