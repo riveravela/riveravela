@@ -1,0 +1,61 @@
+---
+title: "Tasa de interés objetivo"
+subtitle: "Ninguna sorpresa por parte de la Junta de Gobierno del Banco de México en su última decisión de política monetaria."
+author: "Luis Manuel Rivera Vela"
+date: "2023-03-31"
+categories: [Política monetaria, R, DataViz]
+format:
+     html:
+          fig-width: 16
+          fig-height: 10
+          toc: FALSE
+link-external-newwindow: TRUE
+bibliography: "citation.bib"
+csl: "apa.csl"
+---
+
+El día de ayer, 30 de marzo de 2023, la Junta de Gobierno del Banco de México decidió incrementar la tasa de interés objetivo en 25 puntos base para yacerla en 11.25 por ciento, siendo ésta, la tasa de interés más alta en la historia desde que Banxico comenzó a utilizarla como política monetaria en 2008. Esta decisión fue en línea con las expectativas del mercado dado el paralelismo —para algunos malo, para otros bueno— en relación con las decisiones que toma su homóloga estadounidense, la Reserva Federal de Estados Unidos.
+
+En su [comunidado de prensa](https://www.banxico.org.mx/publicaciones-y-prensa/anuncios-de-las-decisiones-de-politica-monetaria/%7BB5CDF10E-D32B-9E92-3E8E-13BB22940D60%7D.pdf), mencionan el hecho de que la inflación general continuó disminuyendo en distintas economías, no obstante, los niveles de precios persisten elevados. A su vez, la inflación subyacente ha mostrado una permanencia aún alta. Respecto a las políticas monetarias en otras naciones, sus bancas centrales han continuado con los incrementos en la tasa de interés.
+
+Para México, recalcan que la inflación general ha menguado más de lo previsto por el mercado, principalmente por la evolución del componente no subyacente. Para la primera quincena de marzo, la inflación general se ubicó en 7.12 por ciento de forma anual, mientras que la inflación subyacente yació en 8.15 por ciento.
+
+Asimismo, esperan que la inflación converga a la meta objetivo a finales del 2024, mientras que sus previsiones están sujetas a riesgos al alza principalmente por la persistencia de la inflación subyacente en niveles elevados, depreciación cambiaria ante eventos volatiles en el mercado internacional, presiones de costos y presiones en los niveles de precios de los commodities energéticos y/o agropecuarios. En tanto, las previsiones a la baja están incididas por una desaceleración económica a nivel global, menor traspaso de presiones en los costos, un escenario cada vez más favorable en las situaciones geopolíticas a nivel internacional o un mejor funcionamiento en las cadenas de suministro, así como un efecto mayor en las medidas del Gobierno a través del [Paquete contra la inflación y carestía (PACIC)](https://www.gob.mx/cms/uploads/attachment/file/723331/CPM_SHCP_Pacic__04may22.pdf) para mitigar los altos niveles de precios en su canasta de productos.
+
+Con todo ello, la Junta de Gobierno del Banco de México decidió por unanimidad el incremento de 25 puntos base para llegar a un nivel de 11.25 por ciento. Siendo así, en la @fig-chart se puede visualizar la evolución de la tasa de interés objetivo por parte de Banxico desde el 2008 a la fecha de esta última decisión.
+
+```{r Librería y token, warning = FALSE, message = FALSE, include = FALSE}
+pacman::p_load(ggplot2, siebanxicor, tidyverse, plotly)
+setToken("2de1d66ba59782aba1443de8e70952e1dc18a2c5ad3ec9bb6a202d13cf24183a")
+```
+
+## Evolución de la tasa de interés desde 2008.
+
+Para la creación de esta gráfica, se descargó el paquete `siebanxicor` del @siebanxicor para obtener la información directamente del API del Sistema de Información Económica (SIE) de esta institución, con ello se facilita el acceso y la consulta de los indicadores que dispone ese repositorio. En tanto, se necesitará generar un token dentro del portal para configurarlo en R, así como la consulta del catálogo de series para obtener el identificador (IdSerie) que se requiera. En este caso específico utilizamos el IdSerie **SF61745**, que pertenece a la **Tasa de objetivo**.
+
+Para mayor información, se puede acceder a la plataforma del SIE API del Banco de México [aquí](https://www.banxico.org.mx/SieAPIRest/service/v1/).
+
+```{r Gráfico, warning = FALSE, message = FALSE, include = TRUE}
+#| label: fig-chart
+#| fig-cap: "Tasa de interés de 2008 a la última decisión de política monetaria."
+#| fig-cap-location: bottom
+# ID del catálogo de series de Banco de México.
+idSerie <- c("SF61745")
+tasa_interes <- getSeriesData(idSerie, '2008-01-01','2023-03-31') %>%
+     as.data.frame() %>% 
+     rename(Fecha = SF61745.date, Nivel = SF61745.value)
+
+ti <- ggplot(tasa_interes,
+       aes(x = Fecha, y = Nivel)) +
+     geom_line(color = "#27408B",
+               linewidth = 1) +
+     labs(title = "Tasa de interés objetivo de Banco de México",
+          subtitle = "Periodo de 2015 a la última decisión de política monetaria (30 de marzo de 2023).",
+          x = NULL,
+          y = "Tasa de Interés") +
+     theme_classic(base_size = 10)
+#    Gráfico interactivo con plotly.
+ggplotly(ti)
+```
+
+## Referencias
