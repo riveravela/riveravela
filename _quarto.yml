@@ -27,10 +27,3 @@ format:
     toc: true
 
 editor: visual
-
-format:
-  html:
-    include-in-header:
-    <script type="text/plain" cookie-consent="targeting" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9751378391732448"
-     crossorigin="anonymous" >
-</script>
