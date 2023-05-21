@@ -1,0 +1,61 @@
+---
+title: "¿Fin del ciclo alcista?"
+subtitle: "Con la última decisión de política monetaria por parte de la Junta de Gobierno del Banco de México, se espera que haya finalizado las alzas en la tasa de interés."
+author: "Luis Manuel Rivera Vela"
+date: "2023-05-21"
+categories: [Política monetaria, Banxico, R, DataViz, Code, México]
+image: "ciclo_alcista.png"
+format:
+     html:
+          fig-width: 16
+          fig-height: 10
+          toc: FALSE
+link-external-newwindow: TRUE
+bibliography: "citation.bib"
+csl: "apa.csl"
+---
+
+El pasado jueves 18 de mayo, la Junta de Gobierno del Banco de México decidió por unanimidad, mantener la tasa de interés objetivo sin cambio, con ello, el nivel de la tasa de interés se queda en los 11.25 puntos porcentuales. A pesar de ello, sigue siendo el nivel más alto que se tenga registro desde que el Banco de México incorporó la tasa de interés como política monetaria en 2008. En tanto, esta decisión fue en línea con las expectativas del mercado, dado que, de acuerdo al Instituto Nacional de Estadística y Geografía (INEGI), la inflación —en su variación anual— registrada en el mes de abril fue de 6.25 por ciento, manteniendo un descenso en los últimos tres meses consecutivos.
+
+En su [comunidado de prensa](https://www.banxico.org.mx/publicaciones-y-prensa/anuncios-de-las-decisiones-de-politica-monetaria/%7B325F9D3D-8C6B-8F20-4811-1069701DB7F1%7D.pdf), se menciona que la inflación general ha continuado disminuyendo en la mayoría de las economías, sin embargo, los niveles de precios aún permanecen elevados, mientras que, el componente subyacente, donde se engloban todos aquellos productos a excepción de los volátiles, ha mantenido una resistencia a disminuir. Asimismo, en el mismo comunicado de prensa, comunican que diferentes bancos centrales han dejado de incrementar sus tasas, así como la anticipación de una desaceleración mundial de acuerdo a las expectativas de crecimiento alrededor del mundo.
+
+Por otra parte, los pronósticos para la inflación general se han ajustado marginalmente a la baja para ciertos trimestres, mientras que, los correspondientes a la inflación subyacente, no mostraron cambios. A pesar de ello, se sigue anticipando que la inflación converja a la meta objetivo de 3 por ciento (± 1 por ciento) en el cuarto trimestre de 2024.
+
+Aunado a ello, "se estima que el panorama inflacionario será complicado e incierto a lo largo de todo el horizonte de pronóstico, con riesgo al alza", concluye el comunicado.
+
+```{r Librería y token, warning = FALSE, message = FALSE, include = FALSE}
+pacman::p_load(ggplot2, siebanxicor, tidyverse, plotly)
+setToken("2de1d66ba59782aba1443de8e70952e1dc18a2c5ad3ec9bb6a202d13cf24183a")
+```
+
+## Último ciclo alcista.
+
+Para la creación de esta gráfica interactiva, se utilizó el paquete `siebanxicor` del @siebanxicor para obtener información del API del Sistema de Información Económica (SIE) de esta institución, con ello, se facilita el acceso y la consulta de los diferentes indicadores que dispone este repositorio. Para en este caso en específico, se utilizó el IdSerie **SF61745**, que pertenece a la **Tasa de objetivo**.
+
+Además, se tomará en cuenta desde el nivel más alto registrado anteriormente, cuyo nivel se ubicó en 8.25 puntos porcentuales y que se mantuvo sin cambios el jueves 27 de junio de 2019, con ello se podrá observar el último ciclo bajista y el ciclo alcista actual que presuntamente acaba de concluir.
+
+Para mayor información, se puede acceder [aquí](https://www.banxico.org.mx/SieAPIRest/service/v1/) a la plataforma del SIE API del Banco de México.
+
+```{r Gráfico, warning = FALSE, message = FALSE, include = TRUE}
+#| label: fig-chart
+#| fig-cap: "Evolución de la tasa de interés en México, de 2008 a la última decisión de política monetaria."
+#| fig-cap-location: bottom
+# ID del catálogo de series de Banco de México.
+idSerie <- c("SF61745")
+tasa_interes <- getSeriesData(idSerie, '2019-06-27','2023-05-21') %>%
+     as.data.frame() %>% 
+     rename(Fecha = SF61745.date, Nivel = SF61745.value)
+
+gráfico_tasainterés <- ggplot(tasa_interes,
+       aes(x = Fecha, y = Nivel)) +
+     geom_line(color = "#27408B",
+               linewidth = 1) +
+     labs(title = "Tasa de interés objetivo de Banco de México",
+          x = NULL,
+          y = "Tasa de Interés") +
+     theme_classic(base_size = 10)
+#    Gráfico interactivo con plotly.
+ggplotly(gráfico_tasainterés)
+```
+
+## Referencias
