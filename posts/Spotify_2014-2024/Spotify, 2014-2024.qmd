@@ -4,7 +4,7 @@ subtitle: "Una mirada a mis patrones de escucha con datos reales."
 author: "Luis Manuel Rivera Vela"
 date: "2025-05-26"
 categories: [Spotify, DataViz, Code, R]
-image: "Brecha salarial por género y sectores económicos, IMSS, febrero 2023.png"
+#image: "Brecha salarial por género y sectores económicos, IMSS, febrero 2023.png"
 format:
      html:
           toc: TRUE
