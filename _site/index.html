@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.2.475">
+<meta name="generator" content="quarto-1.6.42">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -17,7 +17,7 @@ div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
 ul.task-list li input[type="checkbox"] {
   width: 0.8em;
-  margin: 0 0.8em 0.2em -1.6em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
 </style>
@@ -39,17 +39,23 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-2f5df379a58b258e96c21c0638c20c03.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-f3c2ea88cadbcfb37ba28ffa2c97cfc1.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
   "collapse-after": 3,
   "panel-placement": "end",
   "type": "overlay",
-  "limit": 20,
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
   "language": {
     "search-no-results-text": "No results",
     "search-matching-documents-text": "matching documents",
@@ -58,8 +64,10 @@ ul.task-list li input[type="checkbox"] {
     "search-more-match-text": "more match in this document",
     "search-more-matches-text": "more matches in this document",
     "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
     "search-detached-cancel-button-title": "Cancel",
-    "search-submit-button-title": "Submit"
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
   }
 }</script>
 <script>
@@ -112,12 +120,42 @@ cookieconsent.run({
   "notice_banner_reject_button_hide":false,
   "preferences_center_close_button_hide":false,
   "website_name":""
+  ,
+"language":"en"
   });
 });
 </script> 
   
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
   <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 <link rel="stylesheet" href="styles.css">
 </head>
@@ -125,36 +163,38 @@ cookieconsent.run({
 <body class="nav-fixed">
 
 <div id="quarto-search-results"></div>
-  <header id="quarto-header" class="headroom fixed-top">
-    <nav class="navbar navbar-expand-lg navbar-dark ">
+  <header id="quarto-header" class="headroom fixed-top quarto-banner">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
-      <div class="navbar-brand-container">
+      <div class="navbar-brand-container mx-auto">
     <a class="navbar-brand" href="./index.html">
     <span class="navbar-title">riveravela</span>
     </a>
   </div>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
   <span class="navbar-toggler-icon"></span>
 </button>
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item">
-    <a class="nav-link" href="./about.html">
- <span class="menu-text">Acerca de mi</span></a>
+    <a class="nav-link" href="./about.html"> 
+<span class="menu-text">Acerca de mi</span></a>
   </li>  
   <li class="nav-item compact">
-    <a class="nav-link" href="https://github.com/riveravela"><i class="bi bi-github" role="img">
+    <a class="nav-link" href="https://github.com/riveravela"> <i class="bi bi-github" role="img">
 </i> 
- <span class="menu-text"></span></a>
+<span class="menu-text"></span></a>
   </li>  
   <li class="nav-item compact">
-    <a class="nav-link" href="https://twitter.com/riveravela"><i class="bi bi-twitter" role="img">
+    <a class="nav-link" href="https://twitter.com/riveravela"> <i class="bi bi-twitter" role="img">
 </i> 
- <span class="menu-text"></span></a>
+<span class="menu-text"></span></a>
   </li>  
 </ul>
-              <div id="quarto-search" class="" title="Search"></div>
           </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
       </div> <!-- /container-fluid -->
     </nav>
 </header>
@@ -167,7 +207,7 @@ cookieconsent.run({
   </div>
     
   
-  <div class="quarto-title-meta">
+  <div class="quarto-title-meta column-page-left">
 
       
     
@@ -180,7 +220,7 @@ cookieconsent.run({
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         
-    <h5 class="quarto-listing-category-title">Categories</h5><div class="quarto-listing-category category-default"><div class="category" data-category="">All <span class="quarto-category-count">(4)</span></div><div class="category" data-category="Banxico">Banxico <span class="quarto-category-count">(2)</span></div><div class="category" data-category="Blog">Blog <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Brecha salarial">Brecha salarial <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Code">Code <span class="quarto-category-count">(3)</span></div><div class="category" data-category="DataViz">DataViz <span class="quarto-category-count">(3)</span></div><div class="category" data-category="IMSS">IMSS <span class="quarto-category-count">(1)</span></div><div class="category" data-category="México">México <span class="quarto-category-count">(3)</span></div><div class="category" data-category="Política monetaria">Política monetaria <span class="quarto-category-count">(2)</span></div><div class="category" data-category="R">R <span class="quarto-category-count">(3)</span></div><div class="category" data-category="Tamaulipas">Tamaulipas <span class="quarto-category-count">(1)</span></div></div></div>
+    <h5 class="quarto-listing-category-title">Categories</h5><div class="quarto-listing-category category-default"><div class="category" data-category="">All <span class="quarto-category-count">(5)</span></div><div class="category" data-category="QmFueGljbw==">Banxico <span class="quarto-category-count">(2)</span></div><div class="category" data-category="QmxvZw==">Blog <span class="quarto-category-count">(1)</span></div><div class="category" data-category="QnJlY2hhJTIwc2FsYXJpYWw=">Brecha salarial <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Q29kZQ==">Code <span class="quarto-category-count">(4)</span></div><div class="category" data-category="RGF0YVZpeg==">DataViz <span class="quarto-category-count">(4)</span></div><div class="category" data-category="SU1TUw==">IMSS <span class="quarto-category-count">(1)</span></div><div class="category" data-category="TSVDMyVBOXhpY28=">México <span class="quarto-category-count">(3)</span></div><div class="category" data-category="UG9sJUMzJUFEdGljYSUyMG1vbmV0YXJpYQ==">Política monetaria <span class="quarto-category-count">(2)</span></div><div class="category" data-category="Ug==">R <span class="quarto-category-count">(4)</span></div><div class="category" data-category="U3BvdGlmeQ==">Spotify <span class="quarto-category-count">(1)</span></div><div class="category" data-category="VGFtYXVsaXBhcw==">Tamaulipas <span class="quarto-category-count">(1)</span></div></div></div>
 <!-- main -->
 <main class="content quarto-banner-title-block column-page-left" id="quarto-document-content">
 
@@ -191,49 +231,90 @@ cookieconsent.run({
 
 
 
+
 <div class="quarto-listing quarto-listing-container-default" id="listing-listing">
 <div class="list quarto-listing-default">
-<div class="quarto-post image-right" data-index="0" data-categories="Política monetaria,Banxico,R,DataViz,Code,México" data-listing-date-sort="1684645200000" data-listing-file-modified-sort="1684708662327" data-listing-reading-time-sort="2.985">
+<div class="quarto-post image-right" data-index="0" data-categories="U3BvdGlmeSUyQ0RhdGFWaXolMkNDb2RlJTJDUg==" data-listing-date-sort="1748242800000" data-listing-file-modified-sort="1748253329703" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="21" data-listing-word-count-sort="4013">
 <div class="thumbnail">
-<p><a href="./posts/tasa_interés_18-05-2023/fin del ciclo alcista¿.html"> <img src="./posts/tasa_interés_18-05-2023/ciclo_alcista.png" class="thumnail-image"> </a></p>
+<p><a href="./posts/Spotify_2014-2024/Spotify, 2014-2024.html" class="no-external"></a></p><a href="./posts/Spotify_2014-2024/Spotify, 2014-2024.html" class="no-external">
+<p><img loading="lazy" src="./posts/Spotify_2014-2024/Brecha salarial por género y sectores económicos, IMSS, febrero 2023.png" class="thumbnail-image"></p>
+</a><p><a href="./posts/Spotify_2014-2024/Spotify, 2014-2024.html" class="no-external"></a></p>
 </div>
 <div class="body">
-<a href="./posts/tasa_interés_18-05-2023/fin del ciclo alcista¿.html">
 <h3 class="no-anchor listing-title">
-¿Fin del ciclo alcista?
+<a href="./posts/Spotify_2014-2024/Spotify, 2014-2024.html" class="no-external">Visualizando mi historial de streaming en Spotify</a>
 </h3>
 <div class="listing-subtitle">
-Con la última decisión de política monetaria por parte de la Junta de Gobierno del Banco de México, se espera que haya finalizado las alzas en la tasa de interés.
+<a href="./posts/Spotify_2014-2024/Spotify, 2014-2024.html" class="no-external">Una mirada a mis patrones de escucha con datos reales.</a>
 </div>
-</a>
 <div class="listing-categories">
-<div class="listing-category" onclick="window.quartoListingCategory('Política monetaria'); return false;">
-Política monetaria
+<div class="listing-category" onclick="window.quartoListingCategory('U3BvdGlmeQ=='); return false;">
+Spotify
 </div>
-<div class="listing-category" onclick="window.quartoListingCategory('Banxico'); return false;">
-Banxico
-</div>
-<div class="listing-category" onclick="window.quartoListingCategory('R'); return false;">
-R
-</div>
-<div class="listing-category" onclick="window.quartoListingCategory('DataViz'); return false;">
+<div class="listing-category" onclick="window.quartoListingCategory('RGF0YVZpeg=='); return false;">
 DataViz
 </div>
-<div class="listing-category" onclick="window.quartoListingCategory('Code'); return false;">
+<div class="listing-category" onclick="window.quartoListingCategory('Q29kZQ=='); return false;">
 Code
 </div>
-<div class="listing-category" onclick="window.quartoListingCategory('México'); return false;">
+<div class="listing-category" onclick="window.quartoListingCategory('Ug=='); return false;">
+R
+</div>
+</div>
+<div class="listing-description">
+<a href="./posts/Spotify_2014-2024/Spotify, 2014-2024.html" class="no-external">En cada momento del día, semana, mes y año, millones de reproducciones se realizan a través de las distintas plataformas digitales como Apple Music, Deezer, Pandora…</a>
+</div>
+</div>
+<div class="metadata">
+<a href="./posts/Spotify_2014-2024/Spotify, 2014-2024.html" class="no-external">
+<div class="listing-date">
+May 26, 2025
+</div>
+<div class="listing-author">
+Luis Manuel Rivera Vela
+</div>
+</a>
+</div>
+</div>
+<div class="quarto-post image-right" data-index="1" data-categories="UG9sJUMzJUFEdGljYSUyMG1vbmV0YXJpYSUyQ0JhbnhpY28lMkNSJTJDRGF0YVZpeiUyQ0NvZGUlMkNNJUMzJUE5eGljbw==" data-listing-date-sort="1684652400000" data-listing-file-modified-sort="1684708662327" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="3" data-listing-word-count-sort="597">
+<div class="thumbnail">
+<p><a href="./posts/tasa_interés_18-05-2023/fin del ciclo alcista¿.html" class="no-external"></a></p><a href="./posts/tasa_interés_18-05-2023/fin del ciclo alcista¿.html" class="no-external">
+<p><img loading="lazy" src="./posts/tasa_interés_18-05-2023/ciclo_alcista.png" class="thumbnail-image"></p>
+</a><p><a href="./posts/tasa_interés_18-05-2023/fin del ciclo alcista¿.html" class="no-external"></a></p>
+</div>
+<div class="body">
+<h3 class="no-anchor listing-title">
+<a href="./posts/tasa_interés_18-05-2023/fin del ciclo alcista¿.html" class="no-external">¿Fin del ciclo alcista?</a>
+</h3>
+<div class="listing-subtitle">
+<a href="./posts/tasa_interés_18-05-2023/fin del ciclo alcista¿.html" class="no-external">Con la última decisión de política monetaria por parte de la Junta de Gobierno del Banco de México, se espera que haya finalizado las alzas en la tasa de interés.</a>
+</div>
+<div class="listing-categories">
+<div class="listing-category" onclick="window.quartoListingCategory('UG9sJUMzJUFEdGljYSUyMG1vbmV0YXJpYQ=='); return false;">
+Política monetaria
+</div>
+<div class="listing-category" onclick="window.quartoListingCategory('QmFueGljbw=='); return false;">
+Banxico
+</div>
+<div class="listing-category" onclick="window.quartoListingCategory('Ug=='); return false;">
+R
+</div>
+<div class="listing-category" onclick="window.quartoListingCategory('RGF0YVZpeg=='); return false;">
+DataViz
+</div>
+<div class="listing-category" onclick="window.quartoListingCategory('Q29kZQ=='); return false;">
+Code
+</div>
+<div class="listing-category" onclick="window.quartoListingCategory('TSVDMyVBOXhpY28='); return false;">
 México
 </div>
 </div>
-<a href="./posts/tasa_interés_18-05-2023/fin del ciclo alcista¿.html">
 <div class="listing-description">
-El pasado jueves 18 de mayo, la Junta de Gobierno del Banco de México decidió por unanimidad, mantener la tasa de interés objetivo sin cambio, con ello, el nivel de la tasa…
+<a href="./posts/tasa_interés_18-05-2023/fin del ciclo alcista¿.html" class="no-external">El pasado jueves 18 de mayo, la Junta de Gobierno del Banco de México decidió por unanimidad, mantener la tasa de interés objetivo sin cambio, con ello, el nivel de la tasa…</a>
 </div>
-</a>
 </div>
 <div class="metadata">
-<a href="./posts/tasa_interés_18-05-2023/fin del ciclo alcista¿.html">
+<a href="./posts/tasa_interés_18-05-2023/fin del ciclo alcista¿.html" class="no-external">
 <div class="listing-date">
 May 21, 2023
 </div>
@@ -243,47 +324,45 @@ Luis Manuel Rivera Vela
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="1" data-categories="Política monetaria,Banxico,R,DataViz,Code,México" data-listing-date-sort="1680242400000" data-listing-file-modified-sort="1680388903997" data-listing-reading-time-sort="3.395">
+<div class="quarto-post image-right" data-index="2" data-categories="UG9sJUMzJUFEdGljYSUyMG1vbmV0YXJpYSUyQ0JhbnhpY28lMkNSJTJDRGF0YVZpeiUyQ0NvZGUlMkNNJUMzJUE5eGljbw==" data-listing-date-sort="1680246000000" data-listing-file-modified-sort="1680388903997" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="4" data-listing-word-count-sort="679">
 <div class="thumbnail">
-<p><a href="./posts/tasa-interés-30032023/tasa_interés_30032023.html"> <img src="./posts/tasa-interés-30032023/ti_0823.png" class="thumnail-image"> </a></p>
+<p><a href="./posts/tasa-interés-30032023/tasa_interés_30032023.html" class="no-external"></a></p><a href="./posts/tasa-interés-30032023/tasa_interés_30032023.html" class="no-external">
+<p><img loading="lazy" src="./posts/tasa-interés-30032023/ti_0823.png" class="thumbnail-image"></p>
+</a><p><a href="./posts/tasa-interés-30032023/tasa_interés_30032023.html" class="no-external"></a></p>
 </div>
 <div class="body">
-<a href="./posts/tasa-interés-30032023/tasa_interés_30032023.html">
 <h3 class="no-anchor listing-title">
-Sin sobresaltos en Banxico
+<a href="./posts/tasa-interés-30032023/tasa_interés_30032023.html" class="no-external">Sin sobresaltos en Banxico</a>
 </h3>
 <div class="listing-subtitle">
-Ninguna sorpresa por parte de la Junta de Gobierno del Banco de México en su última decisión de política monetaria.
+<a href="./posts/tasa-interés-30032023/tasa_interés_30032023.html" class="no-external">Ninguna sorpresa por parte de la Junta de Gobierno del Banco de México en su última decisión de política monetaria.</a>
 </div>
-</a>
 <div class="listing-categories">
-<div class="listing-category" onclick="window.quartoListingCategory('Política monetaria'); return false;">
+<div class="listing-category" onclick="window.quartoListingCategory('UG9sJUMzJUFEdGljYSUyMG1vbmV0YXJpYQ=='); return false;">
 Política monetaria
 </div>
-<div class="listing-category" onclick="window.quartoListingCategory('Banxico'); return false;">
+<div class="listing-category" onclick="window.quartoListingCategory('QmFueGljbw=='); return false;">
 Banxico
 </div>
-<div class="listing-category" onclick="window.quartoListingCategory('R'); return false;">
+<div class="listing-category" onclick="window.quartoListingCategory('Ug=='); return false;">
 R
 </div>
-<div class="listing-category" onclick="window.quartoListingCategory('DataViz'); return false;">
+<div class="listing-category" onclick="window.quartoListingCategory('RGF0YVZpeg=='); return false;">
 DataViz
 </div>
-<div class="listing-category" onclick="window.quartoListingCategory('Code'); return false;">
+<div class="listing-category" onclick="window.quartoListingCategory('Q29kZQ=='); return false;">
 Code
 </div>
-<div class="listing-category" onclick="window.quartoListingCategory('México'); return false;">
+<div class="listing-category" onclick="window.quartoListingCategory('TSVDMyVBOXhpY28='); return false;">
 México
 </div>
 </div>
-<a href="./posts/tasa-interés-30032023/tasa_interés_30032023.html">
 <div class="listing-description">
-El día de ayer, 30 de marzo de 2023, la Junta de Gobierno del Banco de México decidió incrementar la tasa de interés objetivo en 25 puntos base para yacerla en 11.25 por…
+<a href="./posts/tasa-interés-30032023/tasa_interés_30032023.html" class="no-external">El día de ayer, 30 de marzo de 2023, la Junta de Gobierno del Banco de México decidió incrementar la tasa de interés objetivo en 25 puntos base para yacerla en 11.25 por…</a>
 </div>
-</a>
 </div>
 <div class="metadata">
-<a href="./posts/tasa-interés-30032023/tasa_interés_30032023.html">
+<a href="./posts/tasa-interés-30032023/tasa_interés_30032023.html" class="no-external">
 <div class="listing-date">
 Mar 31, 2023
 </div>
@@ -293,50 +372,48 @@ Luis Manuel Rivera Vela
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="2" data-categories="Brecha salarial,México,Tamaulipas,IMSS,Code,R,DataViz" data-listing-date-sort="1680156000000" data-listing-file-modified-sort="1680305455466" data-listing-reading-time-sort="11.5">
+<div class="quarto-post image-right" data-index="3" data-categories="QnJlY2hhJTIwc2FsYXJpYWwlMkNNJUMzJUE5eGljbyUyQ1RhbWF1bGlwYXMlMkNJTVNTJTJDQ29kZSUyQ1IlMkNEYXRhVml6" data-listing-date-sort="1680159600000" data-listing-file-modified-sort="1680305455466" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="12" data-listing-word-count-sort="2300">
 <div class="thumbnail">
-<p><a href="./posts/brecha-salarial/brecha-salarial.html"> <img src="./posts/brecha-salarial/Brecha salarial por género y sectores económicos, IMSS, febrero 2023.png" class="thumnail-image"> </a></p>
+<p><a href="./posts/brecha-salarial/brecha-salarial.html" class="no-external"></a></p><a href="./posts/brecha-salarial/brecha-salarial.html" class="no-external">
+<p><img loading="lazy" src="./posts/brecha-salarial/Brecha salarial por género y sectores económicos, IMSS, febrero 2023.png" class="thumbnail-image"></p>
+</a><p><a href="./posts/brecha-salarial/brecha-salarial.html" class="no-external"></a></p>
 </div>
 <div class="body">
-<a href="./posts/brecha-salarial/brecha-salarial.html">
 <h3 class="no-anchor listing-title">
-Brecha salarial por género y sectores económicos
+<a href="./posts/brecha-salarial/brecha-salarial.html" class="no-external">Brecha salarial por género y sectores económicos</a>
 </h3>
 <div class="listing-subtitle">
-La brecha salarial por género es una realidad que afecta a la sociedad actual. Aunque en muchos lugares del mundo se han hecho esfuerzos por reducirla, todavía hay mucho camino por recorrer.
+<a href="./posts/brecha-salarial/brecha-salarial.html" class="no-external">La brecha salarial por género es una realidad que afecta a la sociedad actual. Aunque en muchos lugares del mundo se han hecho esfuerzos por reducirla, todavía hay mucho camino por recorrer.</a>
 </div>
-</a>
 <div class="listing-categories">
-<div class="listing-category" onclick="window.quartoListingCategory('Brecha salarial'); return false;">
+<div class="listing-category" onclick="window.quartoListingCategory('QnJlY2hhJTIwc2FsYXJpYWw='); return false;">
 Brecha salarial
 </div>
-<div class="listing-category" onclick="window.quartoListingCategory('México'); return false;">
+<div class="listing-category" onclick="window.quartoListingCategory('TSVDMyVBOXhpY28='); return false;">
 México
 </div>
-<div class="listing-category" onclick="window.quartoListingCategory('Tamaulipas'); return false;">
+<div class="listing-category" onclick="window.quartoListingCategory('VGFtYXVsaXBhcw=='); return false;">
 Tamaulipas
 </div>
-<div class="listing-category" onclick="window.quartoListingCategory('IMSS'); return false;">
+<div class="listing-category" onclick="window.quartoListingCategory('SU1TUw=='); return false;">
 IMSS
 </div>
-<div class="listing-category" onclick="window.quartoListingCategory('Code'); return false;">
+<div class="listing-category" onclick="window.quartoListingCategory('Q29kZQ=='); return false;">
 Code
 </div>
-<div class="listing-category" onclick="window.quartoListingCategory('R'); return false;">
+<div class="listing-category" onclick="window.quartoListingCategory('Ug=='); return false;">
 R
 </div>
-<div class="listing-category" onclick="window.quartoListingCategory('DataViz'); return false;">
+<div class="listing-category" onclick="window.quartoListingCategory('RGF0YVZpeg=='); return false;">
 DataViz
 </div>
 </div>
-<a href="./posts/brecha-salarial/brecha-salarial.html">
 <div class="listing-description">
-En la realización de esta visualización de datos, se busca mostrar la diferencia salarial entre hombres y mujeres en los distintos sectores económicos para México…
+<a href="./posts/brecha-salarial/brecha-salarial.html" class="no-external">En la realización de esta visualización de datos, se busca mostrar la diferencia salarial entre hombres y mujeres en los distintos sectores económicos para México…</a>
 </div>
-</a>
 </div>
 <div class="metadata">
-<a href="./posts/brecha-salarial/brecha-salarial.html">
+<a href="./posts/brecha-salarial/brecha-salarial.html" class="no-external">
 <div class="listing-date">
 Mar 30, 2023
 </div>
@@ -346,36 +423,30 @@ Luis Manuel Rivera Vela
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="3" data-categories="Blog" data-listing-date-sort="1680069600000" data-listing-file-modified-sort="1680221912082" data-listing-reading-time-sort="0.035">
+<div class="quarto-post image-right" data-index="4" data-categories="QmxvZw==" data-listing-date-sort="1680073200000" data-listing-file-modified-sort="1680221912082" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="7">
 <div class="thumbnail">
-<a href="./posts/welcome/index.html">
-<div class="thumbnail-image">
-
-</div>
-</a><p><a href="./posts/welcome/index.html"></a></p>
+<p><a href="./posts/welcome/index.html" class="no-external"></a></p><a href="./posts/welcome/index.html" class="no-external">
+<div class="listing-item-img-placeholder card-img-top" >&nbsp;</div>
+</a><p><a href="./posts/welcome/index.html" class="no-external"></a></p>
 </div>
 <div class="body">
-<a href="./posts/welcome/index.html">
 <h3 class="no-anchor listing-title">
-Primer post
+<a href="./posts/welcome/index.html" class="no-external">Primer post</a>
 </h3>
 <div class="listing-subtitle">
-
+<a href="./posts/welcome/index.html" class="no-external"></a>
 </div>
-</a>
 <div class="listing-categories">
-<div class="listing-category" onclick="window.quartoListingCategory('Blog'); return false;">
+<div class="listing-category" onclick="window.quartoListingCategory('QmxvZw=='); return false;">
 Blog
 </div>
 </div>
-<a href="./posts/welcome/index.html">
 <div class="listing-description">
-Esta es mi primera entrada al blog.
+<a href="./posts/welcome/index.html" class="no-external">Esta es mi primera entrada al blog.</a>
 </div>
-</a>
 </div>
 <div class="metadata">
-<a href="./posts/welcome/index.html">
+<a href="./posts/welcome/index.html" class="no-external">
 <div class="listing-date">
 Mar 29, 2023
 </div>
@@ -417,12 +488,15 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     icon: icon
   };
   anchorJS.add('.anchored');
-  const clipboard = new window.ClipboardJS('.code-copy-button', {
-    target: function(trigger) {
-      return trigger.previousElementSibling;
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
     }
-  });
-  clipboard.on('success', function(e) {
+    return false;
+  }
+  const onCopySuccess = function(e) {
     // button target
     const button = e.trigger;
     // don't keep focus
@@ -454,11 +528,50 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }, 1000);
     // clear code selection
     e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
   });
-  function tippyHover(el, contentFn) {
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+          // default icon
+          link.classList.add("external");
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
     const config = {
       allowHTML: true,
-      content: contentFn,
       maxWidth: 500,
       delay: 100,
       arrow: false,
@@ -468,8 +581,17 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       interactive: true,
       interactiveBorder: 10,
       theme: 'quarto',
-      placement: 'bottom-start'
+      placement: 'bottom-start',
     };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
     window.tippy(el, config); 
   }
   const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
@@ -481,9 +603,244 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       try { href = new URL(href).hash; } catch {}
       const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);
-      return note.innerHTML;
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
     });
   }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
   const findCites = (el) => {
     const parentEl = el.parentElement;
     if (parentEl) {
@@ -521,27 +878,17 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       });
     }
   }
-    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
-      var filterRegex = new RegExp('/' + window.location.host + '/');
-    var isInternal = (href) => {
-        return filterRegex.test(href) || localhostRegex.test(href);
-    }
-    // Inspect non-navigation links and adorn them if external
-    var links = window.document.querySelectorAll('a:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item)');
-    for (var i=0; i<links.length; i++) {
-      const link = links[i];
-      if (!isInternal(link.href)) {
-          // default icon
-          link.classList.add("external");
-      }
-    }
 });
 </script>
 </div> <!-- /content -->
 <footer class="footer">
   <div class="nav-footer">
-    <div class="nav-footer-left">Blog realizado con <a href="https://quarto.org/">Quarto</a>, por LMRV.</div>   
-      <div class="nav-footer-center"><div class="cookie-consent-footer"><a href="#" id="open_preferences_center">Cookie Preferences</a></div></div>
+    <div class="nav-footer-left">
+<p>Blog realizado con <a href="https://quarto.org/">Quarto</a>, por LMRV.</p>
+</div>   
+    <div class="nav-footer-center">
+
+<div class="cookie-consent-footer"><a href="#" id="open_preferences_center">Cookie Preferences</a></div></div>
     <div class="nav-footer-right">
       <ul class="footer-items list-unstyled">
     <li class="nav-item compact">
@@ -560,6 +907,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     </div>
   </div>
 </footer>
+
 
 
 
