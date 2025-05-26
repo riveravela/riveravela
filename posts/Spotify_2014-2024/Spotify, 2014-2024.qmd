@@ -4,7 +4,7 @@ subtitle: "Una mirada a mis patrones de escucha con datos reales."
 author: "Luis Manuel Rivera Vela"
 date: "2025-05-26"
 categories: [Spotify, DataViz, Code, R]
-#image: "Brecha salarial por género y sectores económicos, IMSS, febrero 2023.png"
+image: "Spotify.png"
 format:
      html:
           toc: TRUE
@@ -12,6 +12,8 @@ format:
           fig-height: 10
           fig-cap-location: top
           number-sections: false
+          code-fold: show
+          code-summary: "Mostrar código"
 ---
 
 ```{r setup, include = FALSE}
@@ -232,13 +234,13 @@ top25_artistas <- songs |>
 top25_artistas
 ```
 
-En esta gráfica (@fig-top25artistas) se puede observar que la música de The Weeknd es la que más he escuchado... y por mucho, casi llegando a los 600 mil minutos reproducidos, cerca de $\approx$ 10 mil horas o alrededor de 415 días. En tanto, entre el rango de 200k-300k minutos reproducidos, se encuentran artistas como Edgar Oceransky, Bad Bunny, Bruno Mars, System of a Down y Blink 182. Asimismo, en el rango de 100k a 200k, hay artistas como Drake, Coldplay, Limp Bizkit y Ozuna, mientras que, debajo de los 100 mil minutos reproducidos, hay una diversidad de artistas como Post Malone, Adele, 50 Cent, Queen y Zoe. Curiosamente solo tres artistas de habla hispana y solo dos de México (Edgar Oceransky y Zoe).
+En esta gráfica (@fig-top25artistas) se puede observar que la música de The Weeknd es la que más he escuchado... y por mucho, casi llegando a los 600 mil minutos reproducidos, cerca de $\approx$ 10 mil horas o alrededor de 415 días. En tanto, entre el rango de 200k-300k minutos reproducidos, se encuentran artistas como Edgar Oceransky, Bad Bunny, Bruno Mars, System of a Down y Blink 182. Asimismo, en el rango de 100k a 200k, hay artistas como Drake, Coldplay, Limp Bizkit y Ozuna, mientras que, debajo de los 100 mil minutos reproducidos, hay una diversidad de artistas como Post Malone, Adele, 50 Cent, Queen y Zoe. Curiosamente solo tres artistas de habla hispana y solo dos de México (Edgar Oceransky y Zoé).
 
 ### Top 10 artistas por año
 
 Una cuestión que me surgió al estar realizando este tipo de visualizaciones, fue el conocer cómo han cambiado mis gustos musicales a lo largo de este periodo de alrededor de 10 años. Con ello en mente, se esboza el top 10 de artistas por cada año disponible en mi historial de Spotify.
 
-```{r fig-top10anos, fig.cap = "Top 10 artistas más escuchados por año", fig.width=18, fig.height=12}
+```{r fig-top10anos_m, fig.cap = "Top 10 artistas más escuchados por año", fig.width=18, fig.height=12}
 #    Top 10 artistas por año.
 top10_anual <- songs |>
      mutate(anio = lubridate::year(timestamp)) |>
@@ -275,7 +277,7 @@ ggplot(top10_anual, aes(x = reorder_within(artist_name, minutos, anio), y = minu
      coord_flip(clip = "off")
 ```
 
-De esta forma, se observa que a través de los años, los artistas que más escucho han cambiado. Sin embargo, también hay artistas que han permanecido en el mismo periodo.
+De esta forma, se observa que a través de los años, los artistas que más escucho han cambiado. Sin embargo, también hay artistas que han permanecido en el mismo periodo @fig-top10anos_m .
 
 De la misma manera, también se puede dilucidar que la alta concentración de The Weeknd en @fig-top25artistas fue debido a que en los añlos 2018 y 2020, lo escuché con gran fervor. En 2018 desconozco la razón, pero en 2020 pudiera haber incidido el hecho del lanzamiento de su álbum "After Hours". Además, en 2021 se mantuvo como mi artista más escuchado a lo mejor por su medianamente interpretación en el Super Bowl LV de la NFL.
 
@@ -317,15 +319,15 @@ ggplot(top_podcasts_global, aes(
      coord_flip(clip = "off")
 ```
 
-Como se puede observar (@fig-top25podcasts), una forma de mantenerme informado es a través de la reproducción de podcasts informativos, mientras que mi formación académica como economista y financiero, hacen que se genere con mayor frecuencia, contenidos con esa temática. Uno de los podcasts que más escuché ha sido el de \textbf{Money Talks} (que ya ha sido cancelado), así como el segundo lugar \textbf{Peras y manzanas}, donde Valeria Moy aborda temas de coyuntura económica y financiera con un lenguaje sencillo.
+Como se puede observar (@fig-top25podcasts), una forma de mantenerme informado es a través de la reproducción de podcasts informativos, mientras que mi formación académica como economista y financiero, hacen que se genere con mayor frecuencia, contenidos con esa temática. Uno de los podcasts que más escuché ha sido el de **Money Talks** (que ya ha sido cancelado), así como el segundo lugar **Peras y manzanas**, donde Valeria Moy aborda temas de coyuntura económica y financiera con un lenguaje sencillo.
 
-Asimismo, el deporte es algo de lo que me gusta estar al tanto, sobre todo de fútbol americano y Fórmula 1, esto a través del podcast de \textbf{Quique Garay} y \textbf{Fórmula Latina}. El primero, es un espacio (ya extinto) cuyo contenido es referente al fútbol y Olímpicos a través de historias curiosas e interesantes que son relatadas por Alberto Lati que lo hacen sumamente agradable al oído.
+Asimismo, el deporte es algo de lo que me gusta estar al tanto, sobre todo de fútbol americano y Fórmula 1, esto a través del podcast de **Quique Garay** y **Fórmula Latina**. El primero, es un espacio (ya extinto) cuyo contenido es referente al fútbol y Olímpicos a través de historias curiosas e interesantes que son relatadas por Alberto Lati que lo hacen sumamente agradable al oído.
 
-Por otra parte, existen destellos de contenido humorístico como \textbf{Los Manríquez}, \textbf{Otro Rollo} o \textbf{Leyendas Legendarias}, sin embargo, en lo personal, la plataforma más adecuada para observar este tipo de contenido es a través de otras plataformas, como Youtube. Mientras que, para Otro Rollo, fue un maratón nostálgico que hizo aparecer este contenido entre los artistas más reproducidos.
+Por otra parte, existen destellos de contenido humorístico como **Los Manríquez**, **Otro Rollo** o **Leyendas Legendarias**, sin embargo, en lo personal, la plataforma más adecuada para observar este tipo de contenido es a través de otras plataformas, como Youtube. Mientras que, para Otro Rollo, fue un maratón nostálgico que hizo aparecer este contenido entre los artistas más reproducidos.
 
 ### Top 10 podcast por año
 
-```{r fig-top10ano, fig.cap= "Top 10 podcasts por año", fig.height=12, fig.width=20}
+```{r fig-top10ano_p, fig.cap= "Top 10 podcasts por año", fig.height=12, fig.width=20}
 top10_podcasts_anual <- podcasts |>
      mutate(anio = lubridate::year(timestamp)) |>
      group_by(anio, show_name) |>
@@ -356,16 +358,20 @@ ggplot(top10_podcasts_anual, aes(x = reorder_within(show_name, minutos, anio), y
           axis.text.x = element_text(angle = 45, hjust = 1),
           plot.caption = element_text(hjust = 0, face = "italic", size = 9)
      ) +
-     coord_flip(clip = "off")
+     coord_flip(clip = "on")
 ```
+
+En un inicio @fig-top10ano_p, al haber poca diversidad de contenido económico o financiero, solamente escuchaba **Peras y manzanas** de Valeria Moy, sin embargo, conforme se fue diversificando y difundiendo más contenido, mi catálogo de podcasts fue variando de tema. No obstante, el contenido económico y/o financiero permaneció constante.
+
+Asimismo, estoy notando que dejé de escuchar podcasts que son muy interesantes, como **Econokafka** y **Escándalo Mexicano**.
 
 ## Actividad por día y hora
 
-###  Histórico
+### Histórico
 
-Otra forma de observar la información es a través de una gráfica de calor donde se muestre el día y la hora en que más se escuchó contenido en Spotify.
+Otra forma de observar la información es a través de una gráfica de calor donde se muestre el día y la hora en que más escuché contenido en Spotify (@fig-actividad_dh).
 
-```{r fig_actividad_dh, fig.cap= "Actividad histórica por día y hora", fig.height=12, fig.width=12}
+```{r fig-actividad_dh, fig.cap= "Actividad histórica por día y hora", fig.height=12, fig.width=12}
 historial_spotify <- historial_spotify |>
      mutate(
           ts = lubridate::ymd_hms(ts, tz = "UTC"),
@@ -409,13 +415,20 @@ ggplot(actividad_total, aes(dia, hora, fill = min_totales)) +
      )
 ```
 
-En esta visualización (@fig_actividad_dh), se concluye que, de forma generalizada, mi actividad en Spotify es durante las tardes y cierta parte, en las madrugadas. Específicamente durante las madrugadas de los martes, jueves y sábados; así como las tardes de los domingos y miércoles con mayor frecuencia.
+```{r Guardar gráfico anterior, warning = FALSE, message = FALSE, include = FALSE}
+ggsave("Spotify.png",
+       height = 10,
+       width = 16,
+       dpi = 320)
+```
+
+En esta visualización (@fig-actividad_dh), se concluye que, de forma generalizada, mi actividad en Spotify es durante las tardes y cierta parte, en las madrugadas. Específicamente durante las madrugadas de los martes, jueves y sábados; así como las tardes de los domingos y miércoles con mayor frecuencia.
 
 ### Música
 
+En tanto, respecto al contenido musical reproducido por día y hora (@fig-actividad_musica), hay una mayor frecuencia durante algunas madrugadas, mediodías y tardes-noches.
 
-
-```{r fig_actividad_musica, fig.cap= "Actividad histórica por día y hora de música", fig.height=12, fig.width=12}
+```{r fig-actividad_musica, fig.cap= "Actividad histórica por día y hora de música", fig.height=12, fig.width=12}
 actividad_songs <- songs |>
      mutate(
           fecha = as_date(timestamp),
@@ -448,7 +461,11 @@ ggplot(actividad_songs, aes(dia, hora, fill = min_totales)) +
      )
 ```
 
-```{r fig_actividad_podcasts, fig.cap= "Actividad histórica por día y hora de podcasts", fig.height=12, fig.width=12}
+### Podcasts
+
+Respecto al contenido informativo o cómico (@fig-actividad_podcasts), la reproducción de este contenido se concentra más entre las tardes de 15h a 20h de martes a viernes. Y ligeramente algunas madrugadas de viernes y sábado.
+
+```{r fig-actividad_podcasts, fig.cap= "Actividad histórica por día y hora de podcasts", fig.height=12, fig.width=12}
 actividad_podcasts <- podcasts |>
      mutate(
           fecha = as_date(timestamp),
@@ -481,14 +498,12 @@ ggplot(actividad_podcasts, aes(dia, hora, fill = min_totales)) +
      )
 ```
 
+## Conclusión
 
+Explorar mi historial extendido de Spotify ha sido más que un ejercicio técnico, fue una forma de redescubrir mis hábitos, gustos y momentos marcados por la música y los podcasts. A través de estas visualizaciones, no solo observé patrones o tendencias acerca de lo que escucho, también entendí cómo ha evolucionado mi consumo de contenido sonoro a lo largo del tiempo.
 
+Los datos no mienten: hay etapas más intensas, artistas que han sido compañía constante y otros que marcaron solo un instante. Incluso los horarios y días favoritos para escuchar revelan detalles que, sin los datos, pasarían desapercibidos.
 
+Esta experiencia demuestra el poder de visualizar información personal. Con unas cuantos renglones de código, es posible convertir miles de registros en historias visuales significativas.
 
-
-
-
-
-
-
-
+Pd. Espero no alejarme en demasía de la visualización de datos y difusión de contenido económico y/o financiero.
