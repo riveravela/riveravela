@@ -12,8 +12,7 @@ format:
           fig-height: 10
           fig-cap-location: bottom
           number-sections: false
-          code-fold: show
-          code-summary: "Mostrar código"
+          code-fold: true
 ---
 
 ```{r setup, include = FALSE}
