@@ -57,7 +57,7 @@ En mi caso, el historial extendido consta de 7 diferentes archivos que desconozc
 De manera general, la información utilizada para este ejercicio comprende del 28 de abril de 2014 al 6 de noviembre de 2024.
 
 ```{r Vector de rutas, include = FALSE}
-#    Vector con las rutas de tus archivos
+#    Vector con las rutas de los archivos.
 rutas <- c(
      "C:/Users/river/Downloads/my_spotify_data (1)/Spotify Extended Streaming History/Streaming_History_Audio_2014-2016_0.json",
      "C:/Users/river/Downloads/my_spotify_data (1)/Spotify Extended Streaming History/Streaming_History_Audio_2016-2017_1.json",
@@ -72,7 +72,7 @@ rutas <- c(
 Para importar la información, generé un vector con cada dirección de ruta de los archivos (no se mostró por privacidad), y se importaron de la siguiente forma:
 
 ```{r Importar datos}
-# Leer todos los archivos y unirlos
+#    Leer todos los archivos y unirlos.
 historial_spotify <- rutas |>
      map(fromJSON) |>
      bind_rows()
@@ -81,13 +81,13 @@ historial_spotify <- rutas |>
 Una vez importada la información en su forma agregada se realizaron algunos ajustes para el objetivo de esta entrada de blog: se le dio formato de fecha, se añadió una variable con los minutos reproducidos y se creó una variable con fecha (sin hora). De esta forma, el análisis se vuelve menos complejo y se puede visualizar la actividad por año, mes, semana o día.
 
 ```{r Edición}
-#    Convertir la columna 'ts' a clase POSIXct (fecha-hora legible)
+#    Convertir la columna 'ts' a clase POSIXct (fecha-hora legible).
 historial_spotify <- historial_spotify |>  
      mutate(ts = ymd_hms(ts, tz = "UTC"))
 #    Añadir minutos reproducidos.
 historial_spotify <- historial_spotify |>
      mutate(min_played = ms_played / 1000 / 60)
-# Crear columna de fecha (sin hora)
+#    Crear columna de fecha (sin hora).
 historial_spotify <- historial_spotify |>
      mutate(fecha = as_date(ts))
 
@@ -98,11 +98,11 @@ historial_spotify <- historial_spotify |>
 Para la primera gráfica, se muestra la actividad semanal, creando una columna denominada "horas" para alojar la información del contenido escuchado por semana. En @fig-act_semanal se puede observar que mi actividad más alta fue durante las semanas de los años 2022 y 2023 y que, por alguna razón, cuando comencé a utilizar Spotify en el 2014, al poco tiempo dejé de escuchar canciones hasta mediados de 2015.
 
 ```{r fig-act_semanal, fig.cap = "Actividad semanal, 2014-2024"}
-# Agrupar por semana y sumar horas reproducidas
+#    Agrupar por semana y sumar horas reproducidas
 act_semanal <- historial_spotify |>
      group_by(semana = floor_date(fecha, unit = "week")) |>
      summarise(horas = sum(min_played) / 60, .groups = "drop")
-# Graficar
+#    Graficar
 act_semanal |>
      ggplot(aes(x = semana, y = horas)) +
      geom_col(aes(fill = horas), show.legend = FALSE) +
@@ -287,6 +287,7 @@ De la misma manera, también se puede dilucidar que la alta concentración de Th
 Por otra parte, también se pudo graficar los podcasts que más escuché durante estos años.
 
 ```{r fig-top25podcasts, fig.cap = "Top 25 podcast más escuchados en mi historial", fig.height=12, fig.width=12}
+#    Top 25 podcasts.
 top_podcasts_global <- podcasts |>
      group_by(show_name) |>
      summarise(minutos_reproducidos = sum(min_played) * 60, .groups = "drop") |>
@@ -327,6 +328,7 @@ Por otra parte, existen destellos de contenido humorístico como **Los Manríque
 ### Top 10 podcast por año
 
 ```{r fig-top10ano_p, fig.cap= "Top 10 podcasts por año", fig.height=12, fig.width=20}
+#    Top 10 podcasts por año.
 top10_podcasts_anual <- podcasts |>
      mutate(anio = lubridate::year(timestamp)) |>
      group_by(anio, show_name) |>
@@ -371,6 +373,7 @@ Asimismo, estoy notando que dejé de escuchar podcasts que son muy interesantes,
 Otra forma de observar la información es a través de una gráfica de calor donde se muestre el día y la hora en que más escuché contenido en Spotify (@fig-actividad_dh).
 
 ```{r fig-actividad_dh, fig.cap= "Actividad histórica por día y hora", fig.height=12, fig.width=12}
+#    Actividad por día y hora.
 historial_spotify <- historial_spotify |>
      mutate(
           ts = lubridate::ymd_hms(ts, tz = "UTC"),
@@ -428,6 +431,7 @@ En esta visualización (@fig-actividad_dh), se concluye que, de forma generaliza
 En tanto, respecto al contenido musical reproducido por día y hora (@fig-actividad_musica), hay una mayor frecuencia durante algunas madrugadas, mediodías y tardes-noches.
 
 ```{r fig-actividad_musica, fig.cap= "Actividad histórica por día y hora de música", fig.height=12, fig.width=12}
+#    Actividad histórica de música.
 actividad_songs <- songs |>
      mutate(
           fecha = as_date(timestamp),
@@ -465,6 +469,7 @@ ggplot(actividad_songs, aes(dia, hora, fill = min_totales)) +
 Respecto al contenido informativo o cómico (@fig-actividad_podcasts), la reproducción de este contenido se concentra más entre las tardes de 15h a 20h de martes a viernes. Y ligeramente algunas madrugadas de viernes y sábado.
 
 ```{r fig-actividad_podcasts, fig.cap= "Actividad histórica por día y hora de podcasts", fig.height=12, fig.width=12}
+#    Actividad histórica de podcasts.
 actividad_podcasts <- podcasts |>
      mutate(
           fecha = as_date(timestamp),
