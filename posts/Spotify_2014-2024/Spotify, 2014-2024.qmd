@@ -505,6 +505,6 @@ Los datos no mienten: hay etapas más intensas, artistas que han sido compañía
 
 Esta experiencia demuestra el poder de visualizar información personal. Con unas cuantos renglones de código, es posible convertir miles de registros en historias visuales significativas.
 
-**Pd<sub>1</sub>.** Espero no alejarme en demasía de la visualización de datos y difusión de contenido económico y/o financiero.
+**Pd**<sub>1</sub>. Espero no alejarme en demasía de la visualización de datos y difusión de contenido económico y/o financiero.
 
-**Pd<sub>2</sub>.** Ya solicité nuevamente mis datos de Spotify para esbozar una actualización de mi historial extendido.
+**Pd**<sub>2</sub>. Ya solicité nuevamente mis datos de Spotify para esbozar una actualización de mi historial extendido.
